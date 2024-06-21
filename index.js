@@ -2,6 +2,7 @@ const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
 const cors = require("cors");
+const { ok } = require('assert');
 
 const server = jsonServer.create();
 
@@ -12,6 +13,7 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // если вам нужно передавать куки или авторизационные данные
   optionsSuccessStatus: 200, // для старых браузеров, которые возвращают 204
+  status: ok
 };
 
 server.use(jsonServer.defaults({}));
