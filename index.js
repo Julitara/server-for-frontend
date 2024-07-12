@@ -9,7 +9,7 @@ const server = jsonServer.create();
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
 const corsOptions = {
-  origin: "https://tarasova-frontend-project.netlify.app", // замените на ваш фронтенд домен
+  origin: "https://tarasova-frontend-project.netlify.app/", // замените на ваш фронтенд домен
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // если вам нужно передавать куки или авторизационные данные
   optionsSuccessStatus: 200, // для старых браузеров, которые возвращают 204
