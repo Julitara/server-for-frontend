@@ -13,7 +13,8 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // если вам нужно передавать куки или авторизационные данные
   optionsSuccessStatus: 200, // для старых браузеров, которые возвращают 204
-  status: ok
+  status: ok,
+  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
 };
 
 server.use(jsonServer.defaults({}));
