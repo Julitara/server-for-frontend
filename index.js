@@ -1,27 +1,23 @@
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
-const cors = require("cors");
-const { ok } = require('assert');
+//const cors = require("cors");
 
 const server = jsonServer.create();
 
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
-const corsOptions = {
-  origin: "https://tarasova-frontend-project.netlify.app/", // замените на ваш фронтенд домен
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // если вам нужно передавать куки или авторизационные данные
-  optionsSuccessStatus: 200, // для старых браузеров, которые возвращают 204
-  status: ok,
-  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-};
+// const corsOptions = {
+//   origin: "https://tarasova-frontend-project.netlify.app/", // замените на ваш фронтенд домен
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+// };
 
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
-server.use(cors(corsOptions));
+//server.use(cors(corsOptions));
 // Включаем поддержку OPTIONS-запросов для всех маршрутов
-server.options('*', cors(corsOptions));
+//server.options('*', cors(corsOptions));
 
 // Эндпоинт для логина
 server.post('/login', (req, res) => {
