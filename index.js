@@ -1,23 +1,23 @@
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
-//const cors = require("cors");
+const cors = require("cors");
 
 const server = jsonServer.create();
 
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
-// const corsOptions = {
-//   origin: "https://tarasova-frontend-project.netlify.app/", // замените на ваш фронтенд домен
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-// };
+server.use(
+  cors({
+    origin: "https://tarasova-frontend-project.netlify.app", // Разрешенный источник
+    methods: "GET,POST,PUT,DELETE,OPTIONS", // Разрешенные методы
+    allowedHeaders: "Content-Type,Authorization", // Разрешенные заголовки
+  })
+);
+server.options('*', cors()); // Включить поддержку OPTIONS запросов для всех маршрутов
 
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
-//server.use(cors(corsOptions));
-// Включаем поддержку OPTIONS-запросов для всех маршрутов
-//server.options('*', cors(corsOptions));
 
 // Эндпоинт для логина
 server.post('/login', (req, res) => {
