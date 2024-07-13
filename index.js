@@ -2,6 +2,7 @@ const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
 const cors = require("cors");
+const { ok } = require('assert');
 
 const server = jsonServer.create();
 
@@ -12,6 +13,7 @@ server.use(
     origin: "https://tarasova-frontend-project.netlify.app", // Разрешенный источник
     methods: "GET,POST,PUT,DELETE,OPTIONS", // Разрешенные методы
     allowedHeaders: "Content-Type,Authorization", // Разрешенные заголовки
+    status: ok
   })
 );
 server.options('*', cors()); // Включить поддержку OPTIONS запросов для всех маршрутов
