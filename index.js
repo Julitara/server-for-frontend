@@ -12,7 +12,7 @@ server.use(
   cors({
     origin: "https://tarasova-frontend-project.netlify.app", // Разрешенный источник
     methods: "GET,POST,PUT,DELETE,OPTIONS", // Разрешенные методы
-    allowedHeaders: "Content-Type,Authorization", // Разрешенные заголовки
+    allowedHeaders: "Content-Type,Authorization,Access-Control-Allow-Origin", // Разрешенные заголовки
   })
 );
 
