@@ -13,10 +13,18 @@ server.use(
     origin: "https://tarasova-frontend-project.netlify.app", // Разрешенный источник
     methods: "GET,POST,PUT,DELETE,OPTIONS", // Разрешенные методы
     allowedHeaders: "Content-Type,Authorization", // Разрешенные заголовки
-    status: ok
   })
 );
-server.options('*', cors()); // Включить поддержку OPTIONS запросов для всех маршрутов
+
+server.options("*", (req, res) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://tarasova-frontend-project.netlify.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.sendStatus(200); // Возвращаем статус 200 OK
+});
 
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
